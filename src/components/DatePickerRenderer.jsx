@@ -74,6 +74,7 @@ const DatePickerRenderer = () => {
           value={date}
           onChange={(date) => setDate(date)}
           disabledDays={[new Date(2020, 8, 28), new Date(2020, 8, 25)]}
+          disabled={false}
         />
         <div
           style={{

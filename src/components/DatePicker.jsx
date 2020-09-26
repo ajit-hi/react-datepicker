@@ -18,6 +18,8 @@ const Container = styled.div`
   max-width: 800px;
   margin: 50px auto;
   padding: 15px 0;
+  position: relative;
+  ${(props) => (props.disabled ? "pointer-events: none;" : "")}
 `
 
 const YearMonthContainer = styled.div`
@@ -38,7 +40,7 @@ const DaysContainer = styled.div`
   margin: 15px 0 0 0;
 `
 
-const DatePicker = ({ value, onChange, disabledDays }) => {
+const DatePicker = ({ value, onChange, disabledDays, disabled }) => {
   const getDaysArray = useMemo(() => {
     let dayArray = []
     let startOfMonthDate = startOfMonth(value)
@@ -69,7 +71,19 @@ const DatePicker = ({ value, onChange, disabledDays }) => {
 
   const theme = useTheme()
   return (
-    <Container>
+    <Container disabled={disabled}>
+      {disabled ? (
+        <div
+          style={{
+            position: "absolute",
+            background: "rgba(0,0,0,0.75)",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        ></div>
+      ) : null}
       <YearMonthContainer>
         <Year
           selectedYear={getYear(value)}
