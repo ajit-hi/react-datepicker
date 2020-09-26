@@ -3,6 +3,7 @@ import styled from "styled-components"
 import ChevronRightIcon from "@material-ui/icons/ChevronRight"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 import addYears from "date-fns/addYears"
+import { getClosestDateThatIsNotDisabled } from "./dateUtils"
 
 const Container = styled.div`
   height: 24px;
@@ -39,12 +40,16 @@ const ScrollButton = styled.button`
 `
 
 const Year = (props) => {
-  const { selectedYear, selectedDate, onChange } = props
+  const { selectedYear, selectedDate, onChange, disabledDays } = props
   const handleRightButtonClick = useCallback((selectedDate) => {
-    onChange(addYears(selectedDate, 1))
+    onChange(
+      getClosestDateThatIsNotDisabled(addYears(selectedDate, 1), disabledDays)
+    )
   })
   const handleLeftButtonClick = useCallback((selectedDate) => {
-    onChange(addYears(selectedDate, -1))
+    onChange(
+      getClosestDateThatIsNotDisabled(addYears(selectedDate, -1), disabledDays)
+    )
   })
 
   return (

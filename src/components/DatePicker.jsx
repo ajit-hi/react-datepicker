@@ -75,11 +75,13 @@ const DatePicker = ({ value, onChange, disabledDays }) => {
           selectedYear={getYear(value)}
           selectedDate={value}
           onChange={onChange}
+          disabledDays={disabledDays}
         />
         <Month
           selectedMonth={getMonth(value)}
           selectedDate={value}
           onChange={onChange}
+          disabledDays={disabledDays}
         />
       </YearMonthContainer>
       <DaysContainer>

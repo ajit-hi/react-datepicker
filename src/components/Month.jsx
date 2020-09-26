@@ -4,6 +4,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 import getMonth from "date-fns/getMonth"
 import addMonths from "date-fns/addMonths"
+import { getClosestDateThatIsNotDisabled } from "./dateUtils"
 
 const MonthName = [
   "January",
@@ -55,12 +56,16 @@ const ScrollButton = styled.button`
 `
 
 const Month = (props) => {
-  const { selectedMonth, selectedDate, onChange } = props
+  const { selectedMonth, selectedDate, onChange, disabledDays } = props
   const handleRightButtonClick = useCallback((selectedMonth, selectedDate) => {
-    onChange(addMonths(selectedDate, 1))
+    onChange(
+      getClosestDateThatIsNotDisabled(addMonths(selectedDate, 1), disabledDays)
+    )
   })
   const handleLeftButtonClick = useCallback((selectedMonth, selectedDate) => {
-    onChange(addMonths(selectedDate, -1))
+    onChange(
+      getClosestDateThatIsNotDisabled(addMonths(selectedDate, -1), disabledDays)
+    )
   })
 
   return (
