@@ -10,6 +10,8 @@ This function takes two dates and compares them and returns true if dates have y
 irrespective of time of these dates.
 */
 function areDatesEqualWithoutTime(dateOne, dateTwo) {
+  let dateOneStart = startOfDay(dateOne)
+  let dateTwoStart = startOfDay(dateTwo)
   let result = isEqual(startOfDay(dateOne), startOfDay(dateTwo))
   return result
 }
@@ -19,14 +21,15 @@ function checkIfDateIsInDisabledArray(dateToBeChecked, array) {
     if (areDatesEqualWithoutTime(dateToBeChecked, date)) {
       return true
     }
-    return false
   }
+  return false
 }
 
 /* This function takes an array of disabled dates and a date instance. It returns a date that 
     is closest to date instance provided and not in disabled arrays.
 */
 function getClosestDateThatIsNotDisabled(date, disabledDates) {
+  console.log(date, disabledDates)
   if (!checkIfDateIsInDisabledArray(date, disabledDates)) {
     return date
   }

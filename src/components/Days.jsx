@@ -139,7 +139,6 @@ const Days = (props) => {
     if (updatedScrollLeft < 0) {
       updatedScrollLeft = 0
     }
-    console.log(updatedScrollLeft)
     dayListRef.current.scrollLeft = updatedScrollLeft
   })
 

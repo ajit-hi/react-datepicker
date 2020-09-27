@@ -41,10 +41,14 @@ const DaysContainer = styled.div`
 `
 
 const DatePicker = ({ value, onChange, disabledDays, disabled }) => {
+  if (!value) {
+    value = new Date()
+  }
+
   const getDaysArray = useMemo(() => {
     let dayArray = []
-    let startOfMonthDate = startOfMonth(value)
-    let endOfMonthDate = endOfMonth(value)
+    let startOfMonthDate = startOfMonth(value || new Date())
+    let endOfMonthDate = endOfMonth(value || new Date())
 
     // get a date to iterate from start of the selected dates month to end of the month.
     // by this way we will push into array all the dates of the month of selected date.

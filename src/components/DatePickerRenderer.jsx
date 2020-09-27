@@ -27,7 +27,7 @@ const formats = ["yyyy-MMM-dd", "yyyy-MM-dd", "yy-MM-dd", "yyyy/MM/dd"]
 
 const DatePickerRenderer = () => {
   const [theme, setTheme] = useState(AVAILABLE_THEMES[0])
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(null)
 
   return (
     <>
@@ -99,7 +99,9 @@ const DatePickerRenderer = () => {
           {formats.map((item) => (
             <div style={{ display: "flex" }}>
               <div style={{ flexGrow: 1 }}>{item}</div>
-              <div style={{ flexGrow: 1 }}>{format(date, item)}</div>
+              <div style={{ flexGrow: 1 }}>
+                {format(date || new Date(), item)}
+              </div>
             </div>
           ))}
         </div>
